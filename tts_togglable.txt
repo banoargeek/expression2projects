@@ -1,0 +1,69 @@
+@name TTS
+@inputs 
+@outputs HideChat
+@persist [LS, Quee]:array
+@trigger 
+
+#KEY: LS = LastSaid: The last thing the owner said in global chat.
+
+#Initialization
+runOnChat(1)
+interval(1)
+if (first() | dupefinished())
+{
+    HideChat = 0
+}
+
+#Chat Clk check and Variable Declaration
+if (chatClk(owner()))
+{
+    LS = owner():lastSaid():lower():explode(" ") 
+    
+    #Chat Command Check and utilities
+    if (LS[1,string] == "/tts")
+    {
+        hideChat(1)
+        
+        if (LS[2,string] == "toggle" | LS[2,string] == "t")
+        {
+            if(LS:count() == 2)
+            {
+                HideChat = !HideChat
+                if (HideChat)
+                {
+                    print("TTS: Chat Visiblity Disabled!")
+                }
+                else
+                {
+                    print("TTS: Chat Visibility Enabled!")
+                }
+            }
+            else
+            {
+                print("TTS: Invalid number of Arguments: expected 2, got "+LS:count()+".")
+            }
+        }
+    }
+    #If result is NOT a chat command, push to queue.
+    else
+    {
+    Quee:pushString(LS:concat(" "))
+    }
+    
+    #HideChat Check
+    if (HideChat)
+    {
+        hideChat(1)
+    }
+}
+
+#Stream Call and utilities
+if (streamCanStart())
+{
+    local S = Quee[1,string]
+    Quee:shift()
+    if (S:length()>=1)
+    {
+        owner():streamStart(2,"https://translate.google.com/translate_tts?ie=UTF-8&tl=en-gb&client=tw-ob&q="+S)
+    }
+}
