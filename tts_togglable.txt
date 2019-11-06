@@ -1,12 +1,15 @@
 @name TTS_Togglable
 @inputs 
 @outputs HideChat
-@persist [LS, Quee]:array IsValidLang:table TTSLang:string
+@persist Quee:array IsValidLang:table TTSLang:string
 @trigger 
 
 #Credit to Jorca For TTS, Edited by Major, Fixes by Syvil.
 
-#KEY: LS = LastSaid: The last thing the owner said in global chat.
+#[
+KEY: LS = LastSaid: The last thing the owner said in global chat.
+KEY: LSE = LastSaid Explode: The last thing said, exploded into an array.
+]#
 
 #Initialization
 runOnChat(1)
@@ -14,31 +17,63 @@ interval(1)
 if (first() | dupefinished())
 {
     IsValidLang = table(
-    "en" = 1,
-    "en-gb" = 1
+    "af" = 1, "ga" = 1,
+    "sq" = 1, "it" = 1,
+    "ar" = 1, "ja" = 1,
+    "az" = 1, "kn" = 1,
+    "eu" = 1, "ko" = 1,
+    "bn" = 1, "la" = 1,
+    "be" = 1, "lv" = 1,
+    "bg" = 1, "lt" = 1,
+    "ca" = 1, "mk" = 1,
+    "zh-CN" = 1, "ms" = 1,
+    "zh-TW" = 1, "mt" = 1,
+    "hr" = 1, "no" = 1,
+    "cs" = 1, "fa" = 1,
+    "da" = 1, "pl" = 1,
+    "nl" = 1, "pt" = 1,
+    "en" = 1, "ro" = 1,
+    "eo" = 1, "ru" = 1,
+    "et" = 1, "sr" = 1,
+    "tl" = 1, "sk" = 1,
+    "fi" = 1, "sl" = 1,
+    "fr" = 1, "es" = 1,
+    "gl" = 1, "sw" = 1,
+    "ka" = 1, "sv" = 1,
+    "de" = 1, "ta" = 1,
+    "el" = 1, "te" = 1,
+    "gu" = 1, "th" = 1,
+    "ht" = 1, "tr" = 1,
+    "iw" = 1, "uk" = 1,
+    "hi" = 1, "ur" = 1,
+    "hu" = 1, "vi" = 1,
+    "is" = 1, "cy" = 1,
+    "id" = 1, "yi" = 1
     )
     HideChat = 0
+    #TTSLang = IsValidLang:keys()[round(random(0, IsValidLang:count())), string]
     TTSLang = "en-gb"
 }
 
 #Chat Clk check and Variable Declaration
 if (chatClk(owner()))
 {
-    LS = owner():lastSaid():lower():explode(" ") 
+    LS = owner():lastSaid()
+    LSE = owner():lastSaid():lower():explode(" ")
     
     #Chat Command Check and utilities
-    if (LS[1,string] == "/tts" | LS[1,string] == "/t")
+    if (LSE[1,string] == "/tts" | LSE[1,string] == "/t")
     {
         hideChat(1)
         
         #Check if the count is greater than 1, else toggle chat Visbility.
-        if (LS:count() > 1)
+        if (LSE:count() > 1)
         {
-            if(LS[2,string] == "lang" | LS[2,string] == "l")
+            if(LSE[2,string] == "lang" | LSE[2,string] == "l")
             {   
-                if (IsValidLang[LS[3,string],number])
+                if (IsValidLang[LSE[3,string],number])
                 {
-                    TTSLang = LS[3,string]
+                    TTSLang = LSE[3,string]
                     print("TTS: Set TTS Language to "+TTSLang+"!") 
                 }
                 else
@@ -64,7 +99,7 @@ if (chatClk(owner()))
     #If result is NOT a chat command, push to queue.
     else
     {
-        Quee:pushString(LS:concat(" "))
+        Quee:pushString(LS)
     }
 
     #HideChat Check
