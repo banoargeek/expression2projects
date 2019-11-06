@@ -1,10 +1,10 @@
 @name TTS_Togglable
 @inputs 
 @outputs HideChat
-@persist [LS, Quee]:array
+@persist [LS, Quee]:array IsValidLang:table TTSLang:string
 @trigger 
 
-#CREDIT TO JORCA FOR TTS, EDITED BY MAJOR
+#Credit to Jorca For TTS, Edited by Major, Fixes by Syvil.
 
 #KEY: LS = LastSaid: The last thing the owner said in global chat.
 
@@ -13,7 +13,12 @@ runOnChat(1)
 interval(1)
 if (first() | dupefinished())
 {
+    IsValidLang = table(
+    "en" = 1,
+    "en-gb" = 1
+    )
     HideChat = 0
+    TTSLang = "en-gb"
 }
 
 #Chat Clk check and Variable Declaration
@@ -29,7 +34,18 @@ if (chatClk(owner()))
         #Check if the count is greater than 1, else toggle chat Visbility.
         if (LS:count() > 1)
         {
-        #PLACEHOLDER FRAMEWORK
+            if(LS[2,string] == "lang" | LS[2,string] == "l")
+            {   
+                if (IsValidLang[LS[3,string],number])
+                {
+                    TTSLang = LS[3,string]
+                    print("TTS: Set TTS Language to "+TTSLang+"!") 
+                }
+                else
+                {
+                    print("TTS: Invalid Language Prefix!")
+                }
+            }
         }
         #Toggle Chat Visibility.
         else
@@ -59,12 +75,9 @@ if (chatClk(owner()))
 }
 
 #Stream Call and utilities
-if (streamCanStart())
+if (streamCanStart() & Quee:count() > 0)
 {
     local S = Quee[1,string]
     Quee:shift()
-    if (S:length()>=1)
-    {
-        owner():streamStart(2,"https://translate.google.com/translate_tts?ie=UTF-8&tl=en-gb&client=tw-ob&q="+S)
-    }
+    owner():streamStart(2,"https://translate.google.com/translate_tts?ie=UTF-8&tl="+TTSLang+"&client=tw-ob&q="+S)
 }
