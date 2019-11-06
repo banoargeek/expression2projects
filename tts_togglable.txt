@@ -1,8 +1,10 @@
-@name TTS
+@name TTS_Togglable
 @inputs 
 @outputs HideChat
 @persist [LS, Quee]:array
 @trigger 
+
+#CREDIT TO JORÇA FOR TTS, EDITED BY MAJOR
 
 #KEY: LS = LastSaid: The last thing the owner said in global chat.
 
