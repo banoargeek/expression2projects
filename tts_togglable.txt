@@ -4,7 +4,7 @@
 @persist [LS, Quee]:array
 @trigger 
 
-#CREDIT TO JORÇA FOR TTS, EDITED BY MAJOR
+#CREDIT TO JORCA FOR TTS, EDITED BY MAJOR
 
 #KEY: LS = LastSaid: The last thing the owner said in global chat.
 
@@ -22,36 +22,35 @@ if (chatClk(owner()))
     LS = owner():lastSaid():lower():explode(" ") 
     
     #Chat Command Check and utilities
-    if (LS[1,string] == "/tts")
+    if (LS[1,string] == "/tts" | LS[1,string] == "/t")
     {
         hideChat(1)
         
-        if (LS[2,string] == "toggle" | LS[2,string] == "t")
+        #Check if the count is greater than 1, else toggle chat Visbility.
+        if (LS:count() > 1)
         {
-            if(LS:count() == 2)
+        #PLACEHOLDER FRAMEWORK
+        }
+        #Toggle Chat Visibility.
+        else
+        {
+            HideChat = !HideChat
+            if (HideChat)
             {
-                HideChat = !HideChat
-                if (HideChat)
-                {
-                    print("TTS: Chat Visiblity Disabled!")
-                }
-                else
-                {
-                    print("TTS: Chat Visibility Enabled!")
-                }
+                print("TTS: Chat is Hidden!")
             }
             else
             {
-                print("TTS: Invalid number of Arguments: expected 2, got "+LS:count()+".")
+                print("TTS: Chat is Visible!")
             }
         }
     }
     #If result is NOT a chat command, push to queue.
     else
     {
-    Quee:pushString(LS:concat(" "))
+        Quee:pushString(LS:concat(" "))
     }
-    
+
     #HideChat Check
     if (HideChat)
     {
