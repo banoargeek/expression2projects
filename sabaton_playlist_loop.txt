@@ -40,12 +40,14 @@ if( first() | dupefinished() ) {
         34 = array( "Sabaton - Metal Machine", "https://u.teknik.io/wQ83i.mp3", 310000 ),
         35 = array( "Sabaton - Midway", "https://u.teknik.io/drl8T.mp3", 150000 ),
         36 = array( "Sabaton - Metal Machine", "https://u.teknik.io/7Sb4Y.mp3", 264000 ),
-        37 = array( "Sabaton - Metalizer", "https://u.teknik.io/KmKD5.mp3", 264000 )
+        37 = array( "Sabaton - Metalizer", "https://u.teknik.io/KmKD5.mp3", 264000 ),
+        38 = array( "Sabaton - Night Witches", "https://u.teknik.io/G8t9o.mp3", 194000 ),
+        39 = array( "Sabaton - Nuclear Attack", "https://u.teknik.io/GtZv8.mp3", 262000 ),
+        #Num = array( "Sabaton - No Bullets Fly", "<URL>", 221000 )
+        #Num = array( "Sabaton - <Name>", "https://u.teknik.io/dDCFb.mp3", 0 )
         #Num = array( "Sabaton - <Name>", "<URL>", 0 )
         #Num = array( "Sabaton - <Name>", "<URL>", 0 )
-        #Num = array( "Sabaton - <Name>", "<URL>", 0 )
-        
-    )
+        )
     
     # Config Variables
     SongIndex = 15 - 1
