@@ -43,8 +43,8 @@ if( first() | dupefinished() ) {
         37 = array( "Sabaton - Metalizer", "https://u.teknik.io/KmKD5.mp3", 264000 ),
         38 = array( "Sabaton - Night Witches", "https://u.teknik.io/G8t9o.mp3", 194000 ),
         39 = array( "Sabaton - Nuclear Attack", "https://u.teknik.io/GtZv8.mp3", 262000 ),
-        40 = array( "Sabaton - No Bullets Fly", "<URL>", 221000 )
-        #Num = array( "Sabaton - <Name>", "https://u.teknik.io/dDCFb.mp3", 0 )
+        40 = array( "Sabaton - No Bullets Fly", "https://u.teknik.io/dDCFb.mp3", 221000 )
+        #Num = array( "Sabaton - <Name>", "<URL>", 0 )
         #Num = array( "Sabaton - <Name>", "<URL>", 0 )
         #Num = array( "Sabaton - <Name>", "<URL>", 0 )
         )
