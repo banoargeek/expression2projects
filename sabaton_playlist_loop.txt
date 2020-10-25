@@ -38,9 +38,12 @@ if( first() | dupefinished() ) {
         32 = array( "Sabaton - Man of War", "https://u.teknik.io/1951Z.mp3", 230000 ),
         33 = array( "Sabaton - Metal Ripper", "https://u.teknik.io/WTlIn.mp3", 231000 ),
         34 = array( "Sabaton - Metal Machine", "https://u.teknik.io/wQ83i.mp3", 310000 ),
-        35 = array("Sabaton - InsertNameHere", "https://u.teknik.io/8weTE.mp3", 0)
-        #[35 = array( "Sabaton - <Name>", "<URL>", 0 )
-        ]#
+        35 = array( "Sabaton - Midway", "https://u.teknik.io/drl8T.mp3", 150000 ),
+        36 = array( "Sabaton - Metal Machine", "https://u.teknik.io/7Sb4Y.mp3", 264000 ),
+        37 = array( "Sabaton - Metalizer", "https://u.teknik.io/KmKD5.mp3", 264000 )
+        #Num = array( "Sabaton - <Name>", "<URL>", 0 )
+        #Num = array( "Sabaton - <Name>", "<URL>", 0 )
+        #Num = array( "Sabaton - <Name>", "<URL>", 0 )
         
     )
     
