@@ -1,0 +1,84 @@
+@name Sabaton Playlist Loop
+@persist Streams:table SongIndex Shuffle StreamDelay Volume
+
+if( first() | dupefinished() ) {
+    # Non-Config Variables
+    Streams = table(
+        1 = array( "Sabaton - Dream Destroyer", "https://u.teknik.io/8weTE.mp3", 193000 ),
+        2 = array( "Sabaton - En Livstid I Krig", "https://u.teknik.io/VjRvg.mp3", 365000 ),
+        3 = array( "Sabaton - Bismarck", "https://u.teknik.io/VwzcG.mp3", 314000 ),
+        4 = array( "Sabaton - Far From The Fame", "https://u.teknik.io/4PR82.mp3", 227000 ),
+        5 = array( "Sabaton - Feuer Frei (Rammstein Cover)", "https://u.teknik.io/a7Phc.mp3", 192000 ),
+        6 = array( "Sabaton - Ett Slag Fargat Rott (Killing Ground Swedish Ver.)", "https://u.teknik.io/GNfKk.mp3", 265000 ),
+        7 = array( "Sabaton - Endless Nights", "https://u.teknik.io/S1CEg.mp3", 286000 ),
+        8 = array( "Sabaton - Fields of Verdun", "https://u.teknik.io/y7HWg.mp3", 251000 ),
+        9 = array( "Sabaton - Firestorm", "https://u.teknik.io/ZmOWX.mp3", 187000 ),
+        10 = array( "Sabaton - Fur Immer (Warlock Cover)", "https://u.teknik.io/DPxVH.mp3", 277000 ),
+        11 = array( "Sabaton - Ghost Division", "https://u.teknik.io/9za8w.mp3", 235000 ),
+        12 = array( "Sabaton - Glorious Land", "https://u.teknik.io/Ampor.mp3", 198000 ),
+        13 = array( "Sabaton - Gott Mit Uns", "https://u.teknik.io/CsSNA.mp3", 197000 ),
+        14 = array( "Sabaton - Gott Mit Uns (English Ver.)", "https://u.teknik.io/uUd2L.mp3", 200000 ),
+        15 = array( "Sabaton - For Whom the Bell Tolls (Metallica Cover)", "https://u.teknik.io/GW9ab.mp3", 325000 ),
+        16 = array( "Sabaton - Great War", "https://u.teknik.io/ylxbf.mp3", 268000 ),
+        17 = array( "Sabaton - Hellrider", "https://u.teknik.io/R9Hg5.mp3", 229000 ),
+        18 = array( "Sabaton - In Flanders Fields", "https://u.teknik.io/SFKi7.mp3", 117000 ),
+        19 = array( "Sabaton - Hearts of Iron", "https://u.teknik.io/IGIHc.mp3", 274000 ),
+        20 = array( "Sabaton - Hill 3234", "https://u.teknik.io/m1XdP.mp3", 207000 ),
+        21 = array( "Sabaton - In the Name of God", "https://u.teknik.io/CwDSc.mp3", 247000 ),
+        22 = array( "Sabaton - Into the Fire", "https://u.teknik.io/apWhv.mp3", 206000 ),
+        23 = array( "Sabaton - Langa Bollar Pa Bengt (Svenne Rubins Cover)", "https://u.teknik.io/fPdAe.mp3", 194000 ),
+        24 = array( "Sabaton - Killing Ground (Ett Slag Fargat Rott English Ver.)", "https://u.teknik.io/skBRb.mp3", 264000 ),
+        25 = array( "Sabaton - Inmate 4859", "https://u.teknik.io/cmx7t.mp3", 256000 ),
+        26 = array( "Sabaton - Last Dying Breath", "https://u.teknik.io/m8con.mp3", 206000 ),
+        27 = array( "Sabaton - Long Live the King", "https://u.teknik.io/pw13I.mp3", 253000 ),
+        28 = array( "Sabaton - Light in the Black", "https://u.teknik.io/MGxAA.mp3", 292000 ),
+        29 = array( "Sabaton - Masters of the World", "https://u.teknik.io/2XEpg.mp3", 243000 ),
+        30 = array( "Sabaton - Lejonet Fran Norden", "https://u.teknik.io/TsCoZ.mp3", 331000 ),
+        31 = array( "Sabaton - Metal Crue", "https://u.teknik.io/q8Q8u.mp3", 226000 ),
+        32 = array( "Sabaton - Man of War", "https://u.teknik.io/1951Z.mp3", 230000 ),
+        33 = array( "Sabaton - Metal Ripper", "https://u.teknik.io/WTlIn.mp3", 231000 ),
+        34 = array( "Sabaton - Metal Machine", "https://u.teknik.io/wQ83i.mp3", 310000 ),
+        35 = array("Sabaton - InsertNameHere", "https://u.teknik.io/8weTE.mp3", 0)
+        #[35 = array( "Sabaton - <Name>", "<URL>", 0 )
+        ]#
+        
+    )
+    
+    # Config Variables
+    SongIndex = 15 - 1
+    Shuffle = 0
+    StreamDelay = 5000
+    # Volume is represented as percentage
+    Volume = 60
+    
+    timer( "play_song", 0 )
+}
+
+if( clk( "play_song" ) ) {
+    
+    if( streamCanStart() ) {
+        
+        if( Shuffle ) {
+            
+            local Rand = randint( 1, Streams:count() )
+            while ( Rand == SongIndex ) {
+                Rand = randint( 1, Streams:count() )
+            }
+            SongIndex = Rand
+        }
+        else {
+            if( SongIndex == Streams:count() ) {
+                SongIndex = 1
+            }
+            else {
+                SongIndex++
+            }
+        }
+        hint( "Playing: " + Streams[ SongIndex, array ][ 1, string ], 10 )
+        owner():streamStart( 1, Streams[ SongIndex, array ][ 2, string ], Volume / 100 )
+        timer( "play_song", Streams[ SongIndex, array ][ 3, number ] + StreamDelay )
+    }
+    else {
+        timer( "play_song", 1000 )
+    }
+}
