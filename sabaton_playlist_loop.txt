@@ -7,7 +7,7 @@ if( first() | dupefinished() ) {
         1 = array( "Sabaton - Dream Destroyer", "https://u.teknik.io/8weTE.mp3", 193000 ),
         2 = array( "Sabaton - En Livstid I Krig", "https://u.teknik.io/VjRvg.mp3", 365000 ),
         3 = array( "Sabaton - Bismarck", "https://u.teknik.io/VwzcG.mp3", 314000 ),
-        4 = array( "Sabaton - Far From The Fame", "https://u.teknik.io/4PR82.mp3", 227000 ),
+        4 = array( "Sabaton - Far From The Fame", "https://u.teknik.io/MZ51F.mp3", 227000 ),
         5 = array( "Sabaton - Feuer Frei (Rammstein Cover)", "https://u.teknik.io/a7Phc.mp3", 192000 ),
         6 = array( "Sabaton - Ett Slag Fargat Rott (Killing Ground Swedish Ver.)", "https://u.teknik.io/GNfKk.mp3", 265000 ),
         7 = array( "Sabaton - Endless Nights", "https://u.teknik.io/S1CEg.mp3", 286000 ),
@@ -43,14 +43,19 @@ if( first() | dupefinished() ) {
         37 = array( "Sabaton - Metalizer", "https://u.teknik.io/KmKD5.mp3", 264000 ),
         38 = array( "Sabaton - Night Witches", "https://u.teknik.io/G8t9o.mp3", 194000 ),
         39 = array( "Sabaton - Nuclear Attack", "https://u.teknik.io/GtZv8.mp3", 262000 ),
-        40 = array( "Sabaton - No Bullets Fly", "https://u.teknik.io/dDCFb.mp3", 221000 )
-        #Num = array( "Sabaton - <Name>", "<URL>", 0 )
-        #Num = array( "Sabaton - <Name>", "<URL>", 0 )
-        #Num = array( "Sabaton - <Name>", "<URL>", 0 )
+        40 = array( "Sabaton - No Bullets Fly", "https://u.teknik.io/dDCFb.mp3", 221000 ),
+        41 = array( "Sabaton - Out of Control", "https://u.teknik.io/Npmou.mp3", 218000 ),
+        42 = array( "Sabaton - Primo Victoria", "https://u.teknik.io/TQCSF.mp3", 256000 ),
+        43 = array( "Sabaton - Poltava (English Ver.)", "https://u.teknik.io/bq5km.mp3", 244000 ),
+        44 = array( "Sabaton - Panzer Battalion", "https://u.teknik.io/G9S0i.mp3", 31000 ),
+        45 = array( "Sabaton - Poltava (Swedish Ver.)", "https://u.teknik.io/lNvkf.mp3", 244000 )
+        #Num = array( "Sabaton - Name", "URL", 0 )
+        #Num = array( "Sabaton - Name", "URL", 0 )
+        #Num = array( "Sabaton - Name", "URL", 0 )
         )
     
     # Config Variables
-    SongIndex = 15 - 1
+    SongIndex = 4 - 1
     Shuffle = 0
     StreamDelay = 5000
     # Volume is represented as percentage
